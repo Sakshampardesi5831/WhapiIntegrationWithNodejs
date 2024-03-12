@@ -6,10 +6,11 @@ const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// Integrate routes
+app.use(express.static('upload'));
+
 app.use('/', routes);
 
-// Start the server
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
