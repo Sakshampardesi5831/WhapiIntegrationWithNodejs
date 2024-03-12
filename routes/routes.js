@@ -128,6 +128,24 @@ routes.get("/getNewsLetters", async (req, res, next) => {
     });
   }
 });
+routes.get("/getLink", async (req, res, next) => {
+  try {
+    sdk.auth(`${process.env.API_KEY}`);
+    const LinkGenerate = await sdk.getGroupInvite({
+      GroupID: "120363214954087637@g.us",
+    });
+    console.log(LinkGenerate);
+    res.json({
+      linkgenerated: `https://chat.whatsapp.com/${LinkGenerate.data.invite_code}`,
+    });
+  } catch (error) {
+    res.json({
+      message: "Some Error Occurred !!!",
+      error: error.message,
+    });
+  }
+});
+
 routes.post("/uploadMedia", upload.single("images"), async (req, res, next) => {
   const { userNumbers } = req.body;
   sdk.auth(`${process.env.API_KEY}`);
