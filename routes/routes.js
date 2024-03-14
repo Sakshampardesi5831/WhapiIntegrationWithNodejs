@@ -4,7 +4,6 @@ require("dotenv").config();
 const upload = require("../upload/config");
 const fs = require("fs");
 const routes = Router();
-
 routes.get("/", (req, res) => {
   res.json("hello");
 });
@@ -176,7 +175,6 @@ routes.post("/uploadMedia", upload.single("images"), async (req, res, next) => {
     });
   }
 });
-
 async function sendMessageToGroupAndNewsLetter(to, message) {
   try {
     console.log(to, message);
